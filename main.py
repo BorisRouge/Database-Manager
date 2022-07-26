@@ -12,6 +12,7 @@ PASSWORD='qw'
 HOST='127.0.0.1'
 PORT='5432'
 
+
 class DataBaseManager():
     """Менеджер базы данных."""
     def __init__ (self):
@@ -106,7 +107,7 @@ class DataBaseManager():
 
 
 async def main():
-    REFRESH_RATE = 60 # Частота актуализации БД, сек. 
+    REFRESH_RATE = 10 # Частота актуализации БД, сек. 
     manager = DataBaseManager()
     manager.populate()
     while True:
