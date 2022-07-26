@@ -1,0 +1,27 @@
+
+{% load static %}
+
+<!-- In the body of the HTML page add this and continue adding all Fields. I have provided three example below -->
+ <h1 class='list'>Каналсервис</h1>
+
+       
+       
+        <table border="1">
+            <thead>
+                <th>№</th>
+                <th>Заказ №</th>
+                <th>Стоимость, USD</th>
+                <th>Стоимость, RUB</th>
+                <th>Срок поставки</th>
+            </thead>
+            {% for k in context  %}
+            <tr>
+                <td>{{k.0}}</td>
+                <td>{{k.1}}</td>
+                <td>{{k.2}}</td>
+                <td>{{k.3}}</td>
+                <td>{{k.4}}</td>
+            
+            </tr>
+            {% endfor %}
+        </table>

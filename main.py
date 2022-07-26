@@ -5,6 +5,12 @@ import sheetdata
 from decimal import Decimal as dec
 from lxml import etree
 
+# Данные для подключения к БД.
+DATABASE='CanalServiceDB'
+USER='postgres'
+PASSWORD='postgres'
+HOST='127.0.0.1'
+PORT='5432'
 
 class DataBaseManager():
     """Менеджер базы данных."""
@@ -29,8 +35,8 @@ class DataBaseManager():
     
     def connect(self):
         """Подключение к базе данных."""     
-        con = psycopg2.connect(database='CanalServiceDB',user='postgres',
-                            password='p', host='127.0.0.1', port='5432')
+        con = psycopg2.connect(database=DATABASE,user=USER,
+                            password=PASSWORD, host=HOST, port=PORT)
         print ('Connected.')
         return con
 

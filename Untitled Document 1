@@ -1,7 +1,0 @@
-CREATE TABLE orders (
-	number integer,
-	order_no integer,
-	amount_USD money,
-	amount_RUB money,
-	delivery_date date
-);
