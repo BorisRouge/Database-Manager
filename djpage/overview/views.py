@@ -5,8 +5,8 @@ import psycopg2
 
 # Данные для подключения к БД.
 DATABASE='CanalServiceDB'
-USER='postgres'
-PASSWORD='postgres'
+USER='csuser'
+PASSWORD='qw'
 HOST='127.0.0.1'
 PORT='5432'
 
