@@ -16,6 +16,6 @@ source venv/bin/activate
 pip install -r requirements.txt 
 
 source venv/bin/activate
-sudo gnome-terminal -- python3 djpage/manage.py runserver
-sudo gnome-terminal -- python3 tgbot/bot.py
-python3 main.py
+python3 main.py &
+python3 tgbot/bot.py &
+python3 djpage/manage.py runserver
