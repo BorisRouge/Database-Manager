@@ -1,3 +1,4 @@
+import os
 import psycopg2
 import requests
 import asyncio
@@ -6,10 +7,10 @@ from decimal import Decimal as dec
 from lxml import etree
 
 # Данные для подключения к БД.
-DATABASE='CanalServiceDB'
-USER='csuser'
-PASSWORD='qw'
-HOST='127.0.0.1'
+DATABASE=os.environ.get('POSTGRES_DB')
+USER=os.environ.get('POSTGRES_USER')
+PASSWORD=os.environ.get('POSTGRES_PASSWORD')
+HOST='db'
 PORT='5432'
 
 
@@ -49,10 +50,21 @@ class DataBaseManager():
         con = self.connect()
         cur = con.cursor()
         # Таблица пустая?
-        cur.execute(f"""SELECT * FROM orders""")
+        try:
+            cur.execute(f"""SELECT * FROM orders""")
+        except:
+            con.rollback()
+            cur.execute(""" CREATE TABLE orders (
+                            number integer,
+                            order_no integer,
+                            amount_USD numeric,
+                            amount_RUB numeric,
+                            delivery_date varchar
+                                                );""")
+            cur.execute(f"""SELECT * FROM orders""")
         rows = cur.fetchall()
         # Очищаем таблицу.
-        if rows[0]:
+        if rows:
             cur.execute(f"""TRUNCATE orders""")
             print ('Truncating old data.')
         # Заполняем данными.

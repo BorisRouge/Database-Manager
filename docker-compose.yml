@@ -1,0 +1,44 @@
+version: "3.9"
+   
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=CanalServiceDB
+      - POSTGRES_USER=csuser
+      - POSTGRES_PASSWORD=qw
+
+
+  dbmanager:
+    build: .
+    command: python main.py
+    environment:
+      - POSTGRES_DB=CanalServiceDB
+      - POSTGRES_USER=csuser
+      - POSTGRES_PASSWORD=qw
+    depends_on:
+      - db
+
+  web:
+    build: .
+    command: python djpage/manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_DB=CanalServiceDB
+      - POSTGRES_USER=csuser
+      - POSTGRES_PASSWORD=qw
+    depends_on:
+      - db
+
+  tgbot:
+    build: .
+    command: python tgbot/bot.py
+    environment:
+      - POSTGRES_DB=CanalServiceDB
+      - POSTGRES_USER=csuser
+      - POSTGRES_PASSWORD=qw
+    depends_on:
+      - db

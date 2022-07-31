@@ -1,13 +1,12 @@
+import os
 from django.shortcuts import render
-from django.http import HttpResponse
-from .models import Orders
 import psycopg2
 
 # Данные для подключения к БД.
-DATABASE='CanalServiceDB'
-USER='csuser'
-PASSWORD='qw'
-HOST='127.0.0.1'
+DATABASE=os.environ.get('POSTGRES_DB')
+USER=os.environ.get('POSTGRES_USER')
+PASSWORD=os.environ.get('POSTGRES_PASSWORD')
+HOST='db'
 PORT='5432'
 
 
@@ -16,5 +15,6 @@ def index(request):
                             password=PASSWORD, host=HOST, port=PORT)   
     cur = con.cursor()
     cur.execute(f"""SELECT * FROM orders""")
-    results = cur.fetchall()    
+    results = cur.fetchall() 
+
     return render(request, 'overview.html', {'context':results})

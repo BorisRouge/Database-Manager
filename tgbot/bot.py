@@ -1,13 +1,14 @@
+import os
 import psycopg2
 import time
 from datetime import date, datetime
 from telegram.ext import Updater, CommandHandler
 
 # Данные для подключения к БД.
-DATABASE='CanalServiceDB'
-USER='csuser'
-PASSWORD='qw'
-HOST='127.0.0.1'
+DATABASE=os.environ.get('POSTGRES_DB')
+USER=os.environ.get('POSTGRES_USER')
+PASSWORD=os.environ.get('POSTGRES_PASSWORD')
+HOST='db'
 PORT='5432'
 
 API_KEY = '5540061460:AAGYbJcQFKJD0stTyV_avdY_8qDuIrpKNWw'
