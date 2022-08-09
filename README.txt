@@ -1,5 +1,7 @@
 Ссылка на документ Google Sheets: https://docs.google.com/spreadsheets/d/1jAO6ZKf4umY_IsRcpi3ZPrwuhxyW-zw-fz0KyLHjLS8/edit?usp=sharing
 
+Образ Docker можно скачать через команду docker pull borisrouge/cstest:latest
+
 Использовалась Ubuntu 22.04 LTS
 Выполнены задания 1, 2, 3, 4a, 4b(без React), 4c.
 
